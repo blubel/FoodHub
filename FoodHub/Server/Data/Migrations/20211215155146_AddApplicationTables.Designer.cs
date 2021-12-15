@@ -4,14 +4,16 @@ using FoodHub.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodHub.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211215155146_AddApplicationTables")]
+    partial class AddApplicationTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,24 +114,6 @@ namespace FoodHub.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "69 Yishun Avenue 7",
-                            ContactNumber = "81443543",
-                            Email = "yasmintazi@icloud.com",
-                            Name = "Bel"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "78 Macpherson Street 71",
-                            ContactNumber = "81763881",
-                            Email = "mirzaepicftw@gmail.com",
-                            Name = "Mirza"
-                        });
                 });
 
             modelBuilder.Entity("FoodHub.Shared.Domain.Order", b =>
