@@ -8,16 +8,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/identity/account/logout">Counter</a>
-            </li>
-            <li>
-                <a href="authentication/profile">Hello</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="FetchData">Fetch Data</a>
-            </li>
+            <AuthorizeView>
+                <Authorized>
+                <li class="nav-item">
+                <a class="nav-link" href="/identity/account/logout">Log out @context.User.Identity.Name</a>
+                </li>
+                </Authorized>
+                <NotAuthorized>
+                <li class="nav-item">
+                <a class="nav-link" href="FetchDAta">Login</a>
+                </li>
+                </NotAuthorized>
+            </AuthorizeView>
+            
         </ul>
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
