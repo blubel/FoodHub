@@ -11,7 +11,7 @@ namespace FoodHub.Server.Configurations.Entities
     public class CustomerSeedConfiguration : IEntityTypeConfiguration<Customer>
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
-        {
+        { 
             builder.HasData(
                 new Customer
                 {

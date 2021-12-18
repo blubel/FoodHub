@@ -4,14 +4,16 @@ using FoodHub.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodHub.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211216160750_addedRestaurantData")]
+    partial class addedRestaurantData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,26 +90,6 @@ namespace FoodHub.Server.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "012f9dba-b9fa-46b6-a6b2-9e047662ea2a",
-                            Email = "admin@localhost.com",
-                            EmailConfirmed = false,
-                            FirstName = "Admin",
-                            LastName = "User",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPqE0IGgvUzcDYRaOJ4sVNT2++qfqNYTLoSPLbSmfhrQtOCmElNWsZqHme7uK8XAqw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d52872d3-f53b-46e8-b8d7-effbd54612fe",
-                            TwoFactorEnabled = false,
-                            UserName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("FoodHub.Shared.Domain.Customer", b =>
@@ -399,22 +381,6 @@ namespace FoodHub.Server.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "baad9939-306d-4d16-9de6-3283f9d6e50d",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "bdf5ab46-dfef-4b22-bf60-0a7aeaf724fc",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -502,13 +468,6 @@ namespace FoodHub.Server.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "3781efa7-66dc-47f0-860f-e506d04102e4",
-                            RoleId = "ad2bcf0c-20db-474f-8407-5a6b159518ba"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

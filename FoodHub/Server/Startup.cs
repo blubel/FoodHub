@@ -1,15 +1,14 @@
 using FoodHub.Server.Data;
+using FoodHub.Server.IRepository;
 using FoodHub.Server.Models;
+using FoodHub.Server.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
 
 namespace FoodHub.Server
 {
@@ -43,6 +42,9 @@ namespace FoodHub.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

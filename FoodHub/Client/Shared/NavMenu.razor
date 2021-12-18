@@ -10,14 +10,20 @@
         <ul class="navbar-nav mr-auto">
             <AuthorizeView>
                 <Authorized>
-                <li class="nav-item">
-                <a class="nav-link" href="/identity/account/logout">Log out @context.User.Identity.Name</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/identity/account/logout">Log out @context.User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="restaurants">Restaurants</a>
+                    </li>
                 </Authorized>
                 <NotAuthorized>
                 <li class="nav-item">
-                <a class="nav-link" href="FetchDAta">Login</a>
+                <a class="nav-link" href="FetchData">Login</a>
                 </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="restaurants">Restaurants</a>
+                    </li>
                 </NotAuthorized>
             </AuthorizeView>
             

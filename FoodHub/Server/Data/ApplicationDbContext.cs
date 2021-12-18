@@ -31,6 +31,16 @@ namespace FoodHub.Server.Data
             base.OnModelCreating(builder);
 
             builder.ApplyConfiguration(new CustomerSeedConfiguration());
+
+            builder.ApplyConfiguration(new RestaurantSeedConfiguration());
+            
+            builder.ApplyConfiguration(new RoleSeedConfiguration());
+
+            builder.ApplyConfiguration(new UserSeedConfiguration());
+
+            builder.ApplyConfiguration(new UserRoleSeedConfiguration());
+
         }
     }
-}
+    }
+
