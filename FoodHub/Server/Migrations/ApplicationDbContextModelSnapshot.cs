@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FoodHub.Server.Data.Migrations
+namespace FoodHub.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -94,7 +94,7 @@ namespace FoodHub.Server.Data.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "012f9dba-b9fa-46b6-a6b2-9e047662ea2a",
+                            ConcurrencyStamp = "894bd7c7-6c98-4502-b216-cc386bf4b4ad",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -102,9 +102,9 @@ namespace FoodHub.Server.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPqE0IGgvUzcDYRaOJ4sVNT2++qfqNYTLoSPLbSmfhrQtOCmElNWsZqHme7uK8XAqw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE/LhG6VjDbxOc25x8vl1XUx96TknTndRylMEoL2admf6ExCGCjJX7Uov9WT3XeEkQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d52872d3-f53b-46e8-b8d7-effbd54612fe",
+                            SecurityStamp = "8e157f42-dc2b-47c6-b834-e7e14357ce9e",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -165,8 +165,8 @@ namespace FoodHub.Server.Data.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("Payment")
-                        .HasColumnType("real");
+                    b.Property<double>("Payment")
+                        .HasColumnType("float");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
@@ -237,6 +237,24 @@ namespace FoodHub.Server.Data.Migrations
                             Id = 2,
                             Address = "23 Tampines Street",
                             Name = "Burger Stack"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "54 Orchard Road",
+                            Name = "NutriRice"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "14 Victoria Street",
+                            Name = "Burger Stack"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "4 Tampines Central",
+                            Name = "Steak Haus"
                         });
                 });
 
@@ -247,8 +265,8 @@ namespace FoodHub.Server.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("Cost")
-                        .HasColumnType("real");
+                    b.Property<double>("Cost")
+                        .HasColumnType("float");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -269,6 +287,16 @@ namespace FoodHub.Server.Data.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("RestaurantItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Cost = 9.5,
+                            Description = "Our take on classic pho; succulent broth with fresh beef slices and glass noodles topped generously with spring onions.",
+                            Name = "Bowl of Heaven",
+                            RestaurantId = 1
+                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -404,14 +432,14 @@ namespace FoodHub.Server.Data.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "baad9939-306d-4d16-9de6-3283f9d6e50d",
+                            ConcurrencyStamp = "858b652e-4dae-4f92-a6f3-322d633d20d2",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "bdf5ab46-dfef-4b22-bf60-0a7aeaf724fc",
+                            ConcurrencyStamp = "82afdfec-5ef8-4712-9547-220003fc6d02",
                             Name = "User",
                             NormalizedName = "USER"
                         });

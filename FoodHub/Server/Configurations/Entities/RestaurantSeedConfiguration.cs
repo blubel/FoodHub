@@ -28,6 +28,27 @@ namespace FoodHub.Server.Configurations.Entities
                     Id = 2,
                     Name = "Burger Stack",
                     Address = "23 Tampines Street"
+                },
+
+                new Restaurant
+                {
+                    Id = 3,
+                    Name = "NutriRice",
+                    Address = "54 Orchard Road"
+                },
+
+                new Restaurant
+                {
+                    Id = 4,
+                    Name = "Burger Stack",
+                    Address = "14 Victoria Street"
+                },
+
+                new Restaurant
+                {
+                    Id = 5,
+                    Name = "Steak Haus",
+                    Address = "4 Tampines Central"
                 }
                 ) ;
         }

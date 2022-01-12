@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
+@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
+
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6677F7;">
     <a class="navbar-brand" href="/">FoodHub</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,22 +14,29 @@
             <AuthorizeView>
                 <Authorized>
                     <li class="nav-item">
-                        <a class="nav-link" href="/identity/account/logout">Log out @context.User.Identity.Name</a>
+                        <a class="nav-link" href="/identity/account/profile">Hello, @context.User.Identity.Name!</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="#" @onclick="BeginSignOut" Match="NavLinkMatch.All">
+                            <span class="oi oi-account-logout" aria-hidden="true"></span> Log out
+                        </NavLink>
                     </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="restaurants">Restaurants</a>
                     </li>
                 </Authorized>
                 <NotAuthorized>
-                <li class="nav-item">
-                <a class="nav-link" href="FetchData">Login</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="FetchData">Login</a>
+                    </li>
                     <li class="nav-item px-3">
                         <a class="nav-link" href="restaurants">Restaurants</a>
                     </li>
                 </NotAuthorized>
             </AuthorizeView>
-            
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
         </ul>
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -34,3 +44,12 @@
         </form>
     </div>
 </nav>
+
+@code
+{
+    public async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        Navigation.NavigateTo("authentication/logout");
+    }
+}

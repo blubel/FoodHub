@@ -40,6 +40,12 @@ namespace FoodHub.Server.Data
 
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
+            builder.ApplyConfiguration(new RestaurantItemSeedConfiguration());
+           
+            builder.ApplyConfiguration(new OrderSeedConfiguration());
+
+
+
         }
     }
     }

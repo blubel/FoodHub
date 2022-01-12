@@ -9,7 +9,7 @@ namespace FoodHub.Shared.Domain
     public class Order : BaseDomain
     {
         public DateTime DateTime { get; set; }
-        public float Payment { get; set; }
+        public double Payment { get; set; }
         public int RestaurantId { get; set; }
         public virtual Restaurant Restaurant { get; set; }
         public int CustomerId { get; set; }
