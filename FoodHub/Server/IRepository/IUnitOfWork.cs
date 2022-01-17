@@ -11,9 +11,7 @@ namespace FoodHub.Server.IRepository
     {
         Task Save(HttpContext httpContext);
         IGenericRepository<Customer> Customers { get; }
-        IGenericRepository<Restaurant> Restaurants { get; }
-        IGenericRepository<Order> Orders { get; }
-        IGenericRepository<OrderItem> OrderItems { get; }
-        IGenericRepository<RestaurantItem> RestaurantItems { get; }
+        IGenericRepository<SushiMenu> SushiMenu { get; }
+
     }
 }

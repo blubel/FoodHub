@@ -5,6 +5,10 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,30 +23,36 @@ namespace FoodHub.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<RestaurantItem> RestaurantItems { get; set; }
+
+        public DbSet<SushiMenu> SushiMenu { get; set; }
+        
+        public DbSet<Sushi> Sushis { get; set; }
+
+        public DbSet<Ingredient> Ingredients { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
+           
+           // configure a many to many rs for sushi to have many ingredients
+           builder.Entity<IngredientSelection>().HasKey(pst => new { pst.SushiId, pst.IngredientId });
+           builder.Entity<IngredientSelection>().HasOne<Sushi>().WithMany(ps => ps.Ingredients);
+           builder.Entity<IngredientSelection>().HasOne(pst => pst.Ingredient).WithMany();
+
+             // Inline the Lat-Long pairs in Order rather than having a FK to another table
+            builder.Entity<Order>().OwnsOne(o => o.DeliveryLocation);
+
             builder.ApplyConfiguration(new CustomerSeedConfiguration());
 
-            builder.ApplyConfiguration(new RestaurantSeedConfiguration());
-            
             builder.ApplyConfiguration(new RoleSeedConfiguration());
 
             builder.ApplyConfiguration(new UserSeedConfiguration());
 
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
-            builder.ApplyConfiguration(new RestaurantItemSeedConfiguration());
-           
-            builder.ApplyConfiguration(new OrderSeedConfiguration());
 
 
 

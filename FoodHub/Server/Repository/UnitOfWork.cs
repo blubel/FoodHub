@@ -18,10 +18,7 @@ namespace FoodHub.Server.Repository
     {
         private readonly ApplicationDbContext _context;
         private IGenericRepository<Customer> _customers;
-        private IGenericRepository<Restaurant> _restaurants;
-        private IGenericRepository<Order> _orders;
-        private IGenericRepository<OrderItem> _orderitems;
-        private IGenericRepository<RestaurantItem> _restaurantitems;
+        private IGenericRepository<SushiMenu> _sushimenu;
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -33,14 +30,8 @@ namespace FoodHub.Server.Repository
 
         public IGenericRepository<Customer> Customers
             => _customers ??= new GenericRepository<Customer>(_context);
-        public IGenericRepository<Restaurant> Restaurants
-            => _restaurants ??= new GenericRepository<Restaurant>(_context);
-        public IGenericRepository<Order> Orders
-            => _orders ??= new GenericRepository<Order>(_context);
-        public IGenericRepository<OrderItem> OrderItems
-            => _orderitems ??= new GenericRepository<OrderItem>(_context);
-        public IGenericRepository<RestaurantItem> RestaurantItems
-            => _restaurantitems ??= new GenericRepository<RestaurantItem>(_context);
+
+        public IGenericRepository<SushiMenu> SushiMenu => throw new NotImplementedException();
 
         public void Dispose()
         {

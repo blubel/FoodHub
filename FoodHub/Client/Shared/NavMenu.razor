@@ -14,7 +14,7 @@
             <AuthorizeView>
                 <Authorized>
                     <li class="nav-item">
-                        <a class="nav-link" href="/identity/account/profile">Hello, @context.User.Identity.Name!</a>
+                        <a class="nav-link" href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a>
                     </li>
                     <li class="nav-item px-3">
                         <NavLink class="nav-link" href="#" @onclick="BeginSignOut" Match="NavLinkMatch.All">
@@ -22,7 +22,7 @@
                         </NavLink>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="restaurants">Restaurants</a>
+                        <a class="nav-link" href="menu">Menu</a>
                     </li>
                 </Authorized>
                 <NotAuthorized>
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="FetchData">Login</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="restaurants">Restaurants</a>
+                        <a class="nav-link" href="menu">Menu</a>
                     </li>
                 </NotAuthorized>
             </AuthorizeView>

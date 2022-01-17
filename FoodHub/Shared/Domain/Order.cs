@@ -8,12 +8,19 @@ namespace FoodHub.Shared.Domain
 {
     public class Order : BaseDomain
     {
-        public DateTime DateTime { get; set; }
-        public double Payment { get; set; }
-        public int RestaurantId { get; set; }
-        public virtual Restaurant Restaurant { get; set; }
-        public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
-        public List<OrderItem> Items { get; set; }
+
+        public string UserId { get; set; }
+
+        public DateTime CreatedTime { get; set; }
+
+        public Address DeliveryAddress { get; set; } = new Address();
+
+        public LatLong DeliveryLocation { get; set; }
+
+        public List<Sushi> Sushis { get; set; } = new List<Sushi>();
+
+        public decimal GetTotalPrice() => Sushis.Sum(p => p.GetTotalPrice());
+
+        public string GetFormattedTotalPrice() => GetTotalPrice().ToString("0.00");
     }
 }
