@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodHub.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220205131926_addedSushis")]
-    partial class addedSushis
+    [Migration("20220207120102_changedStuff")]
+    partial class changedStuff
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,7 +96,7 @@ namespace FoodHub.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b03485bb-c0e6-412d-bdbd-e89c60c31b69",
+                            ConcurrencyStamp = "3dbe2a48-5ce8-4d52-8512-e5b7dfdffa28",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -104,9 +104,9 @@ namespace FoodHub.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJJnMQddFhtNcRv+TStlXnpSukhN4BK5DG1GUlecQpP4IX9vR0Nso9me7GbloY5KYw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJUMr19t+05hPXdrk1ubZSjje4Qkzf0e8ypFW6Gqht7dkBTS8kPJS/g7cOLlR/KF7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "82e206a9-68a0-420f-8554-dd278b811a94",
+                            SecurityStamp = "46d828e5-4e2a-4837-a853-ae0076c0971f",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -330,33 +330,38 @@ namespace FoodHub.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CustomId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("CustomPrice")
-                        .HasColumnType("float");
-
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("DrinkId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Ingredient2Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Ingredient3Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Ingredient4Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Ingredient5Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IngredientId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("MealId")
                         .HasColumnType("int");
 
-                    b.Property<double?>("MealPrice")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<int?>("SushiId")
                         .HasColumnType("int");
 
-                    b.Property<double?>("SushiPrice")
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomId");
+                    b.HasIndex("DrinkId");
+
+                    b.HasIndex("IngredientId");
 
                     b.HasIndex("MealId");
 
@@ -548,14 +553,14 @@ namespace FoodHub.Server.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "8a09f394-d17b-43c1-ba31-95378ef91453",
+                            ConcurrencyStamp = "c0ead00d-d368-423b-a34c-6e8eb161975e",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "8c9307da-ac80-4cf3-9208-5bf107b8e947",
+                            ConcurrencyStamp = "6b7e2495-7eb5-4ce9-aad6-c7088ae0286e",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -700,9 +705,13 @@ namespace FoodHub.Server.Migrations
 
             modelBuilder.Entity("FoodHub.Shared.Domain.Order", b =>
                 {
-                    b.HasOne("FoodHub.Shared.Domain.Custom", "Custom")
+                    b.HasOne("FoodHub.Shared.Domain.Drink", "Drink")
                         .WithMany()
-                        .HasForeignKey("CustomId");
+                        .HasForeignKey("DrinkId");
+
+                    b.HasOne("FoodHub.Shared.Domain.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId");
 
                     b.HasOne("FoodHub.Shared.Domain.Meal", "Meal")
                         .WithMany()
@@ -712,7 +721,9 @@ namespace FoodHub.Server.Migrations
                         .WithMany()
                         .HasForeignKey("SushiId");
 
-                    b.Navigation("Custom");
+                    b.Navigation("Drink");
+
+                    b.Navigation("Ingredient");
 
                     b.Navigation("Meal");
 

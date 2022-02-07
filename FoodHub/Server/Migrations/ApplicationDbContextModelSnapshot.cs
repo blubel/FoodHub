@@ -94,7 +94,7 @@ namespace FoodHub.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a0bdc0d-6eac-4ee4-81a5-5c4fc947e2cd",
+                            ConcurrencyStamp = "4edc85af-6c53-47ad-a266-474886648aa0",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -102,9 +102,9 @@ namespace FoodHub.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB2j73hjVwcKZ1TlLLyGOlE+49jD/WBiAL2aRBwtPg5kPh4VqNbtFwlTprWOLQwkxg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB76zTn9XyNYrPzLg11XObRd9BhxoJJpUzVWzZV5EZh5xhqTDK56goZ6uJCU44IcWg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7522e37-10a4-4221-a778-2b50eefdff08",
+                            SecurityStamp = "c2c0c46e-aefd-4745-8ede-69cbfd03351a",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -551,14 +551,14 @@ namespace FoodHub.Server.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "a9551efc-90ed-4978-8d98-7e209e45f113",
+                            ConcurrencyStamp = "15454c46-99d1-4d59-9eca-62de002a0b85",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "9928980a-e24f-4e55-92a6-ddf495d5e710",
+                            ConcurrencyStamp = "db5e763e-ab7d-409a-8106-4a8d0c4f7a8e",
                             Name = "User",
                             NormalizedName = "USER"
                         });

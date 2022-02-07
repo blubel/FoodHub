@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodHub.Server.Migrations
 {
-    public partial class addedDrinsk : Migration
+    public partial class changedStuff : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -286,20 +286,27 @@ namespace FoodHub.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MealId = table.Column<int>(type: "int", nullable: true),
-                    MealPrice = table.Column<double>(type: "float", nullable: true),
-                    CustomId = table.Column<int>(type: "int", nullable: true),
-                    CustomPrice = table.Column<double>(type: "float", nullable: true),
-                    SushiId = table.Column<int>(type: "int", nullable: true),
-                    SushiPrice = table.Column<double>(type: "float", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: false)
+                    IngredientId = table.Column<int>(type: "int", nullable: true),
+                    Ingredient2Id = table.Column<int>(type: "int", nullable: true),
+                    Ingredient3Id = table.Column<int>(type: "int", nullable: true),
+                    Ingredient4Id = table.Column<int>(type: "int", nullable: true),
+                    Ingredient5Id = table.Column<int>(type: "int", nullable: true),
+                    DrinkId = table.Column<int>(type: "int", nullable: true),
+                    SushiId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Customs_CustomId",
-                        column: x => x.CustomId,
-                        principalTable: "Customs",
+                        name: "FK_Orders_Drink_DrinkId",
+                        column: x => x.DrinkId,
+                        principalTable: "Drink",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Ingredient_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredient",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -321,14 +328,14 @@ namespace FoodHub.Server.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "bd2bcf0c-20db-474f-8407-5a6b159518bb", "c86b9dee-0161-4860-a066-35ebd6d66d97", "User", "USER" },
-                    { "ad2bcf0c-20db-474f-8407-5a6b159518ba", "af80e5f1-0515-4fde-9d78-52e34efb52c1", "Administrator", "ADMINISTRATOR" }
+                    { "bd2bcf0c-20db-474f-8407-5a6b159518bb", "6b7e2495-7eb5-4ce9-aad6-c7088ae0286e", "User", "USER" },
+                    { "ad2bcf0c-20db-474f-8407-5a6b159518ba", "c0ead00d-d368-423b-a34c-6e8eb161975e", "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "ec37c59a-3f3c-439f-9fa9-73317477e4cf", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEGpuhcR4Jd4uTUTHDeaU9FYSacbMmJEGpfgWR39AfcVOcuyvYIIp4MPBFG6Cl814zQ==", null, false, "c8749fb7-63b4-4422-a81a-f7f34f26c131", false, "Admin" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "3dbe2a48-5ce8-4d52-8512-e5b7dfdffa28", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEJUMr19t+05hPXdrk1ubZSjje4Qkzf0e8ypFW6Gqht7dkBTS8kPJS/g7cOLlR/KF7g==", null, false, "46d828e5-4e2a-4837-a853-ae0076c0971f", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Drink",
@@ -348,15 +355,15 @@ namespace FoodHub.Server.Migrations
                 values: new object[,]
                 {
                     { 10, null, "Pickled radish", 1.6000000000000001 },
-                    { 9, null, "Cherry tomatoes", 0.80000000000000004 },
-                    { 8, null, "Seaweed flakes", 1.3 },
                     { 7, null, "Ikura", 5.0 },
+                    { 6, null, "Cucumber", 1.0 },
+                    { 9, null, "Cherry tomatoes", 0.80000000000000004 },
                     { 4, null, "Octopus", 2.7000000000000002 },
                     { 3, null, "Swordfish", 2.5 },
                     { 2, null, "Tuna", 2.2000000000000002 },
                     { 1, null, "Salmon", 2.0 },
                     { 5, null, "Tamago", 1.5 },
-                    { 6, null, "Cucumber", 1.0 }
+                    { 8, null, "Seaweed flakes", 1.3 }
                 });
 
             migrationBuilder.InsertData(
@@ -373,7 +380,14 @@ namespace FoodHub.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Sushis",
                 columns: new[] { "Id", "Name", "Price" },
-                values: new object[] { 1, "Salmon Bowl", 7.0 });
+                values: new object[,]
+                {
+                    { 1, "Salmon Bowl", 7.0 },
+                    { 2, "Tuna Bowl", 7.2999999999999998 },
+                    { 3, "Swordfish Bowl", 7.5 },
+                    { 4, "Octopus Bowl", 8.0 },
+                    { 5, "Oriental Bowl", 10.0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -446,9 +460,14 @@ namespace FoodHub.Server.Migrations
                 column: "CustomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomId",
+                name: "IX_Orders_DrinkId",
                 table: "Orders",
-                column: "CustomId");
+                column: "DrinkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_IngredientId",
+                table: "Orders",
+                column: "IngredientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_MealId",
