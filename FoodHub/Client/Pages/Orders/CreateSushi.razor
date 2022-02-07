@@ -1,0 +1,61 @@
+﻿@page "/create/sushi"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+    <head>
+        <link href="css/index.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    </head>
+    <div id="content5">
+        <h3>Create your Alacarte Sushi Bowl Order</h3>
+    </div>
+    <EditForm Model="@order" OnValidSubmit="CreateOrder">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <div id="content5">
+                <label>Alacarte Bowl: </label>
+            </div>
+            <div>
+                <InputSelect @bind-Value="order.SushiId" class="form-control">
+                    <option value="">-- Select Bowl --</option>
+                    @if (Sushis != null)
+                    {
+                        foreach (var sushi in Sushis)
+                        {
+                            <option value="@sushi.Id">@sushi.Name - $@sushi.Price </option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => order.SushiId)" />
+            </div>
+        </div>
+        <button type="submit" class="button">
+            Place Order
+        </button>
+        <img src="/images/alacarte/salmon_bowl.jpeg" asp-append-version="true" width="280" />
+        <img src="/images/alacarte/tuna_bowl.jpeg" asp-append-version="true" width="280" />
+        <img src="/images/alacarte/swordfish_bowl.jpeg" asp-append-version="true" width="280" />
+        <img src="/images/alacarte/octopus_bowl.jpeg" asp-append-version="true" width="280" />
+        <img src="/images/alacarte/oriental_bowl.jpeg" asp-append-version="true" width="280" />
+    </EditForm>
+
+    @code {
+
+        Order order = new Order();
+
+        private IList<Sushi> Sushis;
+
+        protected async override Task OnInitializedAsync()
+        {
+            Sushis = await _client.GetFromJsonAsync<List<Sushi>>($"{Endpoints.SushisEndpoint}");
+        }
+
+        private async Task CreateOrder()
+        {
+            await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);
+            _navManager.NavigateTo("/orders/");
+        }
+    }

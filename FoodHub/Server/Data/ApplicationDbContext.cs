@@ -20,19 +20,18 @@ namespace FoodHub.Server.Data
         {
         }
 
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<RestaurantItem> RestaurantItems { get; set; }
+        public DbSet<Meal> Meals { get; set; }
+        public DbSet<Custom> Customs { get; set; }
+        public DbSet<Sushi> Sushis { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new CustomerSeedConfiguration());
-
-            builder.ApplyConfiguration(new RestaurantSeedConfiguration());
+            builder.ApplyConfiguration(new MealSeedConfiguration());
             
             builder.ApplyConfiguration(new RoleSeedConfiguration());
 
@@ -40,13 +39,22 @@ namespace FoodHub.Server.Data
 
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
-            builder.ApplyConfiguration(new RestaurantItemSeedConfiguration());
+            builder.ApplyConfiguration(new IngredientSeedConfiguration());
+            
+            builder.ApplyConfiguration(new DrinkSeedConfiguration());
            
-            builder.ApplyConfiguration(new OrderSeedConfiguration());
+            builder.ApplyConfiguration(new SushiSeedConfiguration());
+
+
+
 
 
 
         }
+
+        public DbSet<FoodHub.Shared.Domain.Ingredient> Ingredient { get; set; }
+
+        public DbSet<FoodHub.Shared.Domain.Drink> Drink { get; set; }
     }
     }
 

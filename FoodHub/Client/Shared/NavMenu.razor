@@ -14,7 +14,7 @@
             <AuthorizeView>
                 <Authorized>
                     <li class="nav-item">
-                        <a class="nav-link" href="/identity/account/profile">Hello, @context.User.Identity.Name!</a>
+                        <a class="nav-link" href="/identity/account/manage">Hello, @context.User.Identity.Name!</a>
                     </li>
                     <li class="nav-item px-3">
                         <NavLink class="nav-link" href="#" @onclick="BeginSignOut" Match="NavLinkMatch.All">
@@ -22,26 +22,31 @@
                         </NavLink>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" href="restaurants">Restaurants</a>
+                        <a class="nav-link" href="meals">Set Meals</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="sushis">Alacarte</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="customs">Create My Own Bowl</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="orders">My Orders</a>
                     </li>
                 </Authorized>
                 <NotAuthorized>
                     <li class="nav-item">
-                        <a class="nav-link" href="FetchData">Login</a>
-                    </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="restaurants">Restaurants</a>
+                        <a class="nav-link" href="authentication/login">Login</a>
                     </li>
                 </NotAuthorized>
             </AuthorizeView>
             <li class="nav-item">
                 <a class="nav-link" href="/about">About Us</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/accounts">Accounts</a>
+            </li>
         </ul>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 

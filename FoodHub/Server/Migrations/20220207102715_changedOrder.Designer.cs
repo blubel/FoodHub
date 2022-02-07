@@ -4,14 +4,16 @@ using FoodHub.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodHub.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220207102715_changedOrder")]
+    partial class changedOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +96,7 @@ namespace FoodHub.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a0bdc0d-6eac-4ee4-81a5-5c4fc947e2cd",
+                            ConcurrencyStamp = "5434a860-2cac-499a-804d-ccdddfe53079",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -102,9 +104,9 @@ namespace FoodHub.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB2j73hjVwcKZ1TlLLyGOlE+49jD/WBiAL2aRBwtPg5kPh4VqNbtFwlTprWOLQwkxg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMazbJg7njCNMsZCfqAEUyTBVqHxUDDnGeF7h6zHfwF+tIsG1QNApsmcGhGm4xao6Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7522e37-10a4-4221-a778-2b50eefdff08",
+                            SecurityStamp = "63217168-6779-4f83-a96e-5b56497a26b3",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -334,26 +336,23 @@ namespace FoodHub.Server.Migrations
                     b.Property<int?>("DrinkId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Ingredient2Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Ingredient3Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Ingredient4Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Ingredient5Id")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IngredientId")
                         .HasColumnType("int");
 
                     b.Property<int?>("MealId")
                         .HasColumnType("int");
 
+                    b.Property<double?>("MealPrice")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<int?>("SushiId")
                         .HasColumnType("int");
+
+                    b.Property<double?>("SushiPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -551,14 +550,14 @@ namespace FoodHub.Server.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "a9551efc-90ed-4978-8d98-7e209e45f113",
+                            ConcurrencyStamp = "f721c4c9-7ef7-4afb-804f-cfd6f3215908",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "9928980a-e24f-4e55-92a6-ddf495d5e710",
+                            ConcurrencyStamp = "7d33fe6e-758e-4b31-bbfe-8b7177e55426",
                             Name = "User",
                             NormalizedName = "USER"
                         });

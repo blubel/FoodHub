@@ -1,0 +1,64 @@
+﻿@page "/create/meal"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<head>
+    <link href="css/index.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+  <div id="content5">
+      <h3>Create your Meal </h3>
+  </div>
+<EditForm Model="@order" OnValidSubmit="CreateOrder">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <div id="content5">
+            <label>Meal: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.MealId" class="form-control">
+                <option value="">-- Select Meal --</option>
+                @if (Meals != null)
+                {
+                    foreach (var meal in Meals)
+                    {
+                        <option value="@meal.Id">@meal.Food with @meal.Drink - $@meal.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.MealId)" />
+        </div>
+    </div>
+    <img src="/images/meals/salmon_bowl_meal.jpeg" asp-append-version="true" width="280" />
+    <img src="/images/meals/tuna_bowl_meal.jpeg" asp-append-version="true" width="280" />
+    <img src="/images/meals/swordfish_bowl_meal.jpeg" asp-append-version="true" width="280" />
+    <img src="/images/meals/oriental_bowl_meal.jpeg" asp-append-version="true" width="280" />
+    <button type="submit" class="button">
+        Place Order
+    </button>
+
+</EditForm>
+
+
+
+@code {
+
+    Order order = new Order();
+
+    private IList<Meal> Meals;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Meals = await _client.GetFromJsonAsync<List<Meal>>($"{Endpoints.MealsEndpoint}");
+    }
+
+    private async Task CreateOrder()
+    {
+        await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);
+        _navManager.NavigateTo("/orders/");
+    }
+}
+

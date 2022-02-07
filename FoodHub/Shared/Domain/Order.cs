@@ -9,11 +9,17 @@ namespace FoodHub.Shared.Domain
     public class Order : BaseDomain
     {
         public DateTime DateTime { get; set; }
-        public double Payment { get; set; }
-        public int RestaurantId { get; set; }
-        public virtual Restaurant Restaurant { get; set; }
-        public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
-        public List<OrderItem> Items { get; set; }
+        public virtual Meal Meal { get; set; }
+        public int? MealId { get; set; }
+        public virtual Ingredient Ingredient { get; set; }
+        public int? IngredientId { get; set; }
+        public int? Ingredient2Id { get; set; }
+        public int? Ingredient3Id { get; set; }
+        public int? Ingredient4Id { get; set; }
+        public int? Ingredient5Id { get; set; }
+        public virtual Drink Drink { get; set; }
+        public int? DrinkId { get; set; }
+        public virtual Sushi Sushi { get; set; }
+        public int? SushiId { get; set; }
     }
 }

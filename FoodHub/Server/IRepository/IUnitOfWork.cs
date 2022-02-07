@@ -10,10 +10,12 @@ namespace FoodHub.Server.IRepository
     public interface IUnitOfWork : IDisposable
     {
         Task Save(HttpContext httpContext);
-        IGenericRepository<Customer> Customers { get; }
-        IGenericRepository<Restaurant> Restaurants { get; }
+        IGenericRepository<Meal> Meals { get; }
         IGenericRepository<Order> Orders { get; }
-        IGenericRepository<OrderItem> OrderItems { get; }
-        IGenericRepository<RestaurantItem> RestaurantItems { get; }
+        IGenericRepository<Custom> Customs { get; }
+        IGenericRepository<Sushi> Sushis { get; }
+        IGenericRepository<Ingredient> Ingredients { get; }
+        IGenericRepository<Drink> Drinks { get; }
+
     }
 }

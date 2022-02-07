@@ -1,0 +1,152 @@
+﻿@page "/create/custom"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<head>
+    <link href="css/index.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<div id="content5">
+    <h3>Create your Custom Bowl Order</h3>
+</div>
+<EditForm Model="@order" OnValidSubmit="CreateOrder">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <div id="content5">
+            <label>1st Ingredient: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.IngredientId" class="form-control">
+                <option value="">-- Select 1st Ingredient --</option>
+                @if (Ingredients != null)
+                {
+                    foreach (var ingredient in Ingredients)
+                    {
+                        <option value="@ingredient.Id">@ingredient.Name - $@ingredient.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.IngredientId)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div id="content5">
+            <label>2nd Ingredient: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.Ingredient2Id" class="form-control">
+                <option value="">-- Select 2nd Ingredient --</option>
+                @if (Ingredients != null)
+                {
+                    foreach (var ingredient in Ingredients)
+                    {
+                        <option value="@ingredient.Id">@ingredient.Name - $@ingredient.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.Ingredient2Id)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div id="content5">
+            <label>3rd Ingredient: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.Ingredient3Id" class="form-control">
+                <option value="">-- Select 3rd Ingredient --</option>
+                @if (Ingredients != null)
+                {
+                    foreach (var ingredient in Ingredients)
+                    {
+                        <option value="@ingredient.Id">@ingredient.Name - $@ingredient.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.Ingredient3Id)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div id="content5">
+            <label>4th Ingredient: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.Ingredient4Id" class="form-control">
+                <option value="">-- Select 4th Ingredient --</option>
+                @if (Ingredients != null)
+                {
+                    foreach (var ingredient in Ingredients)
+                    {
+                        <option value="@ingredient.Id">@ingredient.Name - $@ingredient.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.Ingredient4Id)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div id="content5">
+            <label>5th Ingredient: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.Ingredient5Id" class="form-control">
+                <option value="">-- Select 5th Ingredient --</option>
+                @if (Ingredients != null)
+                {
+                    foreach (var ingredient in Ingredients)
+                    {
+                        <option value="@ingredient.Id">@ingredient.Name - $@ingredient.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.Ingredient5Id)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div id="content5">
+            <label>Drink of choice: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.DrinkId" class="form-control">
+                <option value="">-- Select Your Drink --</option>
+                @if (Drinks != null)
+                {
+                    foreach (var drink in Drinks)
+                    {
+                        <option value="@drink.Id">@drink.Name - $@drink.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.DrinkId)" />
+        </div>
+    </div>
+    <button type="submit" id="button2">
+        Place Order
+    </button>
+</EditForm>
+@code {
+    Order order = new Order();
+
+    private IList<Custom> Customs;
+    private IList<Ingredient> Ingredients;
+    private IList<Drink> Drinks;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Customs = await _client.GetFromJsonAsync<List<Custom>>($"{Endpoints.CustomsEndpoint}");
+        Ingredients = await _client.GetFromJsonAsync<List<Ingredient>>($"{Endpoints.IngredientsEndpoint}");
+        Drinks = await _client.GetFromJsonAsync<List<Drink>>($"{Endpoints.DrinksEndpoint}");
+
+    }
+
+    private async Task CreateOrder()
+    {
+        await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);
+        _navManager.NavigateTo("/orders/");
+    }
+
+
+}

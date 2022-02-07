@@ -17,11 +17,13 @@ namespace FoodHub.Server.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        private IGenericRepository<Customer> _customers;
-        private IGenericRepository<Restaurant> _restaurants;
+        private IGenericRepository<Meal> _meals;
         private IGenericRepository<Order> _orders;
-        private IGenericRepository<OrderItem> _orderitems;
-        private IGenericRepository<RestaurantItem> _restaurantitems;
+        private IGenericRepository<Custom> _customs;
+        private IGenericRepository<Sushi> _sushis;
+        private IGenericRepository<Ingredient> _ingredients;
+        private IGenericRepository<Drink> _drinks;
+
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -31,16 +33,18 @@ namespace FoodHub.Server.Repository
             _userManager = userManager;
         }
 
-        public IGenericRepository<Customer> Customers
-            => _customers ??= new GenericRepository<Customer>(_context);
-        public IGenericRepository<Restaurant> Restaurants
-            => _restaurants ??= new GenericRepository<Restaurant>(_context);
+        public IGenericRepository<Meal> Meals
+            => _meals ??= new GenericRepository<Meal>(_context);
         public IGenericRepository<Order> Orders
             => _orders ??= new GenericRepository<Order>(_context);
-        public IGenericRepository<OrderItem> OrderItems
-            => _orderitems ??= new GenericRepository<OrderItem>(_context);
-        public IGenericRepository<RestaurantItem> RestaurantItems
-            => _restaurantitems ??= new GenericRepository<RestaurantItem>(_context);
+        public IGenericRepository<Custom> Customs
+            => _customs ??= new GenericRepository<Custom>(_context);
+        public IGenericRepository<Sushi> Sushis
+            => _sushis ??= new GenericRepository<Sushi>(_context);
+        public IGenericRepository<Ingredient> Ingredients
+            => _ingredients ??= new GenericRepository<Ingredient>(_context);
+        public IGenericRepository<Drink> Drinks
+            => _drinks ??= new GenericRepository<Drink>(_context);
 
         public void Dispose()
         {

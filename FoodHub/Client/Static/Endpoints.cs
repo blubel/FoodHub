@@ -9,11 +9,14 @@ namespace FoodHub.Client.Static
     {
         private static readonly string Prefix = "api";
 
-        public static readonly string CustomersEndpoint = $"{Prefix}/customers";
-        public static readonly string RestaurantsEndpoint = $"{Prefix}/restaurants";
+        public static readonly string DrinksEndpoint = $"{Prefix}/drinks";
+        public static readonly string SushisEndpoint = $"{Prefix}/sushis";
         public static readonly string OrdersEndpoint = $"{Prefix}/orders";
-        public static readonly string OrderItemsEndpoint = $"{Prefix}/orderitems";
-        public static readonly string RestaurantItemsEndpoint = $"{Prefix}/restaurantitems";
+        public static readonly string MealsEndpoint = $"{Prefix}/meals";
+        public static readonly string IngredientsEndpoint = $"{Prefix}/ingredients";
+        public static readonly string CustomsEndpoint = $"{Prefix}/customs";
+        public static readonly string AccountsEndpoint = $"{Prefix}/accounts";
+
 
     }
 }

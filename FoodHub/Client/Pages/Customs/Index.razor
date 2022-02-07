@@ -1,0 +1,18 @@
+﻿@page "/customs"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+<head>
+    <link href="css/index.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+    <img src="/images/meal_index_pic.jpg" asp-append-version="true" width="1500" height="650" />
+    <div id="content4">
+        <h1>Create your own bowls from scratch, on top of our classic sushi rice.</h1>
+    </div>
+</body>
+<button class="button" onclick="window.location.href='create/custom';">Create my own bowl</button>
+<br />
