@@ -3,7 +3,16 @@
 @inject NavigationManager _navManager
 
 <h3>View Order</h3>
-
+<SetMealComponent order="order" Disabled="true" />
 
 @code {
+ [Parameter] public int id { get; set; }
+ Order order = new Order();
+
+ protected async override Task OnParametersSetAsync()
+ {
+ order = await _client.GetFromJsonAsync<Order>($"{Endpoints.OrdersEndpoint}/{id}");
+ }
+ 
+ 
 }

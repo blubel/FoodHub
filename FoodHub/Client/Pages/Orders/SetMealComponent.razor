@@ -1,0 +1,50 @@
+﻿@inject HttpClient _client
+<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <fieldset disabled = "@Disabled">
+    <div class="form-group">
+        <div id="content5">
+            <label>Meal: </label>
+        </div>
+        <div>
+            <InputSelect @bind-Value="order.MealId" class="form-control">
+               
+                @if (Meals != null)
+                {
+                    foreach (var meal in Meals)
+                    {
+                        <option value="@meal.Id">@meal.Food with @meal.Drink - $@meal.Price </option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => order.MealId)" />
+
+          
+        </div>
+    </div>
+    </fieldset>
+   
+
+</EditForm>
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Order order { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Drink> Drinks;
+    private IList<Ingredient> Ingredients;
+    private IList<Meal> Meals;
+    private IList<Sushi> Sushis;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Drinks = await _client.GetFromJsonAsync<List<Drink>>($"{Endpoints.DrinksEndpoint}");
+        Ingredients = await _client.GetFromJsonAsync<List<Ingredient>>($"{Endpoints.IngredientsEndpoint}");
+        Meals = await _client.GetFromJsonAsync<List<Meal>>($"{Endpoints.MealsEndpoint}");
+        Sushis = await _client.GetFromJsonAsync<List<Sushi>>($"{Endpoints.SushisEndpoint}");
+
+    }
+}
